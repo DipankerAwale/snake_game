@@ -115,17 +115,24 @@ function moveSnake(direction) {
 
 }
 
-while (correct) {
+let gameLoop=true;
+
+while(gameLoop) {
+  let correct = true;
+  while (correct) {
   direction = userInput();
   if (!["W", "A", "S", "D","END"].includes(direction)) {
     console.log("Invalid input. Please enter W, A, S, or D.");
-  } else {
+  }else if(direction==="END"){
+    console.log("Game ended by user.");
+    gameLoop=false;
+    break;
+  }
+  else {
     console.log("You entered:", direction);
     moveSnake(direction);
-    if(direction === "end"){
-      console.log("Game ended by user.");
-    }
     correct = false;
+    }
   }
 }
 
